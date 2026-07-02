@@ -1,11 +1,19 @@
-output "onprem_sim_vnet_id" {
-  value = module.onprem_vnet.id
+output "web_nsg_id" {
+  value = module.web_nsg.id
 }
 
-output "onprem_sim_vnet_name" {
-  value = module.onprem_vnet.name
+output "web_lb_id" {
+  value = module.web_lb.id
 }
 
-output "onprem_sim_subnet_ids" {
-  value = module.onprem_vnet.subnet_ids
+output "web_lb_backend_pool_id" {
+  value = module.web_lb.backend_pool_id
+}
+
+output "web_vm_ids" {
+  value = [for vm in module.web_vm : vm.id]
+}
+
+output "web_vm_private_ips" {
+  value = [for vm in module.web_vm : vm.private_ip_address]
 }
