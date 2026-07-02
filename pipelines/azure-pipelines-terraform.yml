@@ -1,0 +1,30 @@
+trigger: none
+pr:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  workingDirectory: terraform/environments/dev
+
+steps:
+  - checkout: self
+
+  - script: terraform fmt -check -recursive
+    displayName: Terraform fmt
+    workingDirectory: $(workingDirectory)
+
+  - script: terraform init
+    displayName: Terraform init
+    workingDirectory: $(workingDirectory)
+
+  - script: terraform validate
+    displayName: Terraform validate
+    workingDirectory: $(workingDirectory)
+
+  - script: terraform plan -out=tfplan
+    displayName: Terraform plan
+    workingDirectory: $(workingDirectory)

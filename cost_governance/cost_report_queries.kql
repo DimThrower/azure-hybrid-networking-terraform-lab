@@ -1,0 +1,13 @@
+// Inventory by tag
+Resources
+| where resourceGroup startswith "rg-eahl-"
+| extend CostCenter=tostring(tags.CostCenter), BusinessUnit=tostring(tags.BusinessUnit), Application=tostring(tags.Application), Environment=tostring(tags.Environment), Owner=tostring(tags.Owner)
+| project name, type, resourceGroup, CostCenter, BusinessUnit, Application, Environment, Owner, id
+| order by resourceGroup asc, name asc
+
+// Missing required tags
+Resources
+| where resourceGroup startswith "rg-eahl-"
+| extend CostCenter=tostring(tags.CostCenter), BusinessUnit=tostring(tags.BusinessUnit), Application=tostring(tags.Application), Environment=tostring(tags.Environment), Owner=tostring(tags.Owner)
+| where isempty(CostCenter) or isempty(BusinessUnit) or isempty(Application) or isempty(Environment) or isempty(Owner)
+| project name, type, resourceGroup, CostCenter, BusinessUnit, Application, Environment, Owner, id

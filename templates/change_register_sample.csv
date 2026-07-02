@@ -1,0 +1,5 @@
+ChangeID,Title,Type,Risk,Scope,Approver,Status,ImplementationDate,ValidationEvidence,RollbackPlan
+CHG-2026-001,Bootstrap Terraform remote state,Standard,Low,rg-eahl-tfstate-dev,Cloud Lead,Complete,2026-07-01,Storage account and container exist,Delete bootstrap RG if unused
+CHG-2026-002,Deploy hub and spoke VNets,Normal,Medium,rg-eahl-network-dev,Cloud Lead,Planned,,Terraform plan reviewed,terraform destroy plan
+CHG-2026-003,Enable Azure Bastion,Normal,Medium,Hub VNet,Cloud Lead,Planned,,Bastion connection tested,Remove Bastion module and apply
+CHG-2026-004,Deploy Azure Route Server and NVA BGP,Normal,High,Hub VNet routing,Network Lead,Planned,,Effective routes validated,Disable BGP peering and remove route server module
