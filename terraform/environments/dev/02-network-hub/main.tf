@@ -15,21 +15,21 @@ module "hub_vnet" {
 }
 
 # Uncomment after you confirm VNet/subnet deployment. Bastion is billable.
-# module "bastion" {
-#   source              = "../../../modules/bastion"
-#   name                = "bas-${var.name_prefix}-hub-dev"
-#   resource_group_name = module.rg_network.name
-#   location            = var.location
-#   subnet_id           = module.hub_vnet.subnet_ids["AzureBastionSubnet"]
-#   tags                = local.common_tags
-# }
+module "bastion" {
+   source              = "../../../modules/bastion"
+   name                = "bas-${var.name_prefix}-hub-dev"
+   resource_group_name = module.rg_network.name
+   location            = var.location
+   subnet_id           = module.hub_vnet.subnet_ids["AzureBastionSubnet"]
+   tags                = local.common_tags
+ }
 
-# Uncomment after hub/spoke and Bastion are validated. Route Server is billable.
-# module "route_server" {
-#   source              = "../../../modules/route_server"
-#   name                = "ars-${var.name_prefix}-hub-dev"
-#   resource_group_name = module.rg_network.name
-#   location            = var.location
-#   subnet_id           = module.hub_vnet.subnet_ids["RouteServerSubnet"]
-#   tags                = local.common_tags
-# }
+ # Uncomment after hub/spoke and Bastion are validated. Route Server is billable.
+module "route_server" {
+   source              = "../../../modules/route_server"
+   name                = "ars-${var.name_prefix}-hub-dev"
+   resource_group_name = module.rg_network.name
+   location            = var.location
+   subnet_id           = module.hub_vnet.subnet_ids["RouteServerSubnet"]
+   tags                = local.common_tags
+ }
